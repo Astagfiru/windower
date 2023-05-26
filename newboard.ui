@@ -69,6 +69,18 @@ background-color:rgb(0, 0, 127)</string>
            </property>
           </widget>
          </item>
+         <item alignment="Qt::AlignTop">
+          <widget class="QPushButton" name="deleteitembutton">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(170, 0, 0);
+color:rgb(255, 255, 255);
+font-size:13pt</string>
+           </property>
+           <property name="text">
+            <string>Delete Item</string>
+           </property>
+          </widget>
+         </item>
          <item alignment="Qt::AlignRight|Qt::AlignTop">
           <widget class="QListWidget" name="memberlist">
            <property name="maximumSize">

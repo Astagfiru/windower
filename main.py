@@ -1,10 +1,10 @@
 import sys
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QListWidget, QPushButton, QListWidgetItem
+from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QListWidget, QPushButton, QListWidgetItem, QMenu, \
+    QAction
 from PyQt5.uic import loadUi
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtGui import QPixmap
-
 
 
 def GoToMainPage():
@@ -20,6 +20,7 @@ def GoToLoginPage():
     widget.resize(login.size())
     widget.setCurrentIndex(widget.currentIndex() + 1)
 
+
 def GoToBoardPage():
     board = Board()
     widget.addWidget(board)
@@ -30,6 +31,7 @@ def GoToBoardPage():
 class Login(QDialog):
     user = "name"
     passw = " "
+
     def __init__(self):
         super(Login, self).__init__()
         loadUi("login.ui", self)
@@ -74,6 +76,7 @@ class CreateAcc(QDialog):
 class MainPage(QDialog):
     val = "nah"
     valtemp = "yah"
+
     def __init__(self):
         super(MainPage, self).__init__()
         loadUi("boardpage.ui", self)
@@ -81,8 +84,6 @@ class MainPage(QDialog):
         self.addboardbutton.clicked.connect(self.namingboardfunction)
         self.deleteboardbutton.clicked.connect(self.deleteboardfunction)
         self.boardlist.itemDoubleClicked.connect(self.openboardfunction)
-
-
 
     def openboardfunction(self, item):
         MainPage.val = item.text()
@@ -158,14 +159,20 @@ class Account(QDialog):
 
     def gotomainpage(self):
         GoToMainPage()
+
+
 class Board(QDialog):
     def __init__(self):
         print("opening board")
         super(Board, self).__init__()
         loadUi("newboard.ui", self)
+        self.lists = []
         self.addcolumnbutton.clicked.connect(self.addcolumnfunction)
         self.btmp_button.clicked.connect(self.gotomainpage)
         self.boardnamelabel.setText(MainPage.val)
+        self.deleteitembutton.clicked.connect(self.deleteitemfunction)
+        self.calbutton.clicked.connect(self.calculator)
+
 
     def gotomainpage(self):
         GoToMainPage()
@@ -175,29 +182,56 @@ class Board(QDialog):
         list_widget = QListWidget()
         list_widget.setStyleSheet("color:rgb(255, 255, 255); font-size:12pt;")
         list_widget.setFixedSize(200, 400)
+        self.lists.append(list_widget)
 
         # set the list widget to display items horizontally
         list_widget.setViewMode(QListWidget.IconMode)
-
+        list_widget.setResizeMode(QListWidget.Adjust)
 
         # create an "Add Item" button
         add_button = QPushButton('Add Item')
+        add_button.setFixedWidth(200)
         add_button.setStyleSheet("background-color:rgb(85, 170, 127); color:rgb(255, 255, 255); font-size:12pt;")
         add_item_button = QListWidgetItem()
         add_item_button.setSizeHint(add_button.sizeHint())
         list_widget.addItem(add_item_button)
         list_widget.setItemWidget(add_item_button, add_button)
 
+        del_button = QPushButton('Delete')
+        del_button.setFixedWidth(200)
+        del_button.setStyleSheet("background-color:rgb(85, 170, 127); color:rgb(255, 255, 255); font-size:12pt;")
+        del_item_button = QListWidgetItem()
+        del_item_button.setSizeHint(del_button.sizeHint())
+        list_widget.addItem(del_item_button)
+        list_widget.setItemWidget(del_item_button, del_button)
+
         # connect the "Add Item" button's clicked signal to a slot that adds a new item to the list
         add_button.clicked.connect(lambda: self.add_item(list_widget, add_item_button))
+        del_button.clicked.connect(list_widget.deleteLater)
 
         # add the list widget to the horizontal layout
         self.hrlayout.insertWidget(self.hrlayout.count() - 1, list_widget)
+        list_widget.itemDoubleClicked.connect(self.opencardfunction)
 
     def add_item(self, list_widget, item):
         # create a new item and add it to the list
         new_item = QListWidgetItem('new item')
         list_widget.insertItem(list_widget.row(item), new_item)
+
+    def deleteitemfunction(self):
+        for list in self.lists:
+            if list.hasFocus():
+                selected_items = list.selectedItems()
+                if selected_items:
+                    for item in selected_items:
+                        row = list.row(item)
+                        list.takeItem(row)
+                break
+
+
+    def opencardfunction(self):
+        card = Card()
+        card.exec_()
 
 
 class Card(QDialog):
