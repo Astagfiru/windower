@@ -6,7 +6,6 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 
 
-
 def GoToMainPage():
     main = MainPage()
     widget.addWidget(main)
@@ -20,6 +19,7 @@ def GoToLoginPage():
     widget.resize(login.size())
     widget.setCurrentIndex(widget.currentIndex() + 1)
 
+
 def GoToBoardPage():
     board = Board()
     widget.addWidget(board)
@@ -30,6 +30,7 @@ def GoToBoardPage():
 class Login(QDialog):
     user = "name"
     passw = " "
+
     def __init__(self):
         super(Login, self).__init__()
         loadUi("login.ui", self)
@@ -74,6 +75,7 @@ class CreateAcc(QDialog):
 class MainPage(QDialog):
     val = "nah"
     valtemp = "yah"
+
     def __init__(self):
         super(MainPage, self).__init__()
         loadUi("boardpage.ui", self)
@@ -81,8 +83,6 @@ class MainPage(QDialog):
         self.addboardbutton.clicked.connect(self.namingboardfunction)
         self.deleteboardbutton.clicked.connect(self.deleteboardfunction)
         self.boardlist.itemDoubleClicked.connect(self.openboardfunction)
-
-
 
     def openboardfunction(self, item):
         MainPage.val = item.text()
@@ -158,6 +158,8 @@ class Account(QDialog):
 
     def gotomainpage(self):
         GoToMainPage()
+
+
 class Board(QDialog):
     def __init__(self):
         print("opening board")
@@ -179,7 +181,6 @@ class Board(QDialog):
         # set the list widget to display items horizontally
         list_widget.setViewMode(QListWidget.IconMode)
 
-
         # create an "Add Item" button
         add_button = QPushButton('Add Item')
         add_button.setStyleSheet("background-color:rgb(85, 170, 127); color:rgb(255, 255, 255); font-size:12pt;")
@@ -188,16 +189,28 @@ class Board(QDialog):
         list_widget.addItem(add_item_button)
         list_widget.setItemWidget(add_item_button, add_button)
 
+        del_button = QPushButton('Delete')
+        del_button.setStyleSheet("background-color:rgb(85, 170, 127); color:rgb(255, 255, 255); font-size:12pt;")
+        del_item_button = QListWidgetItem()
+        del_item_button.setSizeHint(del_button.sizeHint())
+        list_widget.addItem(del_item_button)
+        list_widget.setItemWidget(del_item_button, del_button)
+
         # connect the "Add Item" button's clicked signal to a slot that adds a new item to the list
         add_button.clicked.connect(lambda: self.add_item(list_widget, add_item_button))
 
         # add the list widget to the horizontal layout
         self.hrlayout.insertWidget(self.hrlayout.count() - 1, list_widget)
+        list_widget.itemDoubleClicked.connect(self.opencardfunction)
 
     def add_item(self, list_widget, item):
         # create a new item and add it to the list
         new_item = QListWidgetItem('new item')
         list_widget.insertItem(list_widget.row(item), new_item)
+
+    def opencardfunction(self):
+        card = Card()
+        card.exec_()
 
 
 class Card(QDialog):
