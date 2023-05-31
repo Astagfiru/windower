@@ -56,6 +56,14 @@ class Calculator(QMainWindow):
         self.ui.btn_mul.clicked.connect(lambda: self.add_temp('×'))
         self.ui.btn_div.clicked.connect(lambda: self.add_temp('÷'))
 
+    def run(self):
+        calculator = QApplication(sys.argv)
+        window = Calculator()
+        window.show()
+        calculator.exec_()
+        window.deleteLater()
+        calculator.quit()
+
     def add_point(self) -> None:
         self.clear_temp_if_equality()
         if '.' not in self.entry.text():
@@ -257,11 +265,3 @@ class Calculator(QMainWindow):
     def resizeEvent(self, event) -> None:
         self.adjust_entry_font_size()
         self.adjust_temp_font_size()
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-
-    window = Calculator()
-    window.show()
-
-    sys.exit(app.exec())

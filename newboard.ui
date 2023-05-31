@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>847</width>
+    <width>1241</width>
     <height>574</height>
    </rect>
   </property>
@@ -27,12 +27,43 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>823</width>
-        <height>550</height>
+        <width>1221</width>
+        <height>554</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
+       <item row="4" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QPushButton" name="deleteitembutton">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(170, 0, 0);
+color:rgb(255, 255, 255);
+font-size:13pt</string>
+           </property>
+           <property name="text">
+            <string>Delete Item</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="addcolumnbutton">
+           <property name="styleSheet">
+            <string notr="true">color:rgb(255, 255, 255);
+background-color:rgb(85, 170, 0);
+font-size:15pt;</string>
+           </property>
+           <property name="text">
+            <string>Add Column</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="5" column="0" rowspan="4">
+        <layout class="QHBoxLayout" name="hrlayout"/>
+       </item>
+       <item row="0" column="0" rowspan="2">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item alignment="Qt::AlignLeft|Qt::AlignTop">
           <widget class="QLabel" name="boardnamelabel">
@@ -69,17 +100,51 @@ background-color:rgb(0, 0, 127)</string>
            </property>
           </widget>
          </item>
-         <item alignment="Qt::AlignTop">
-          <widget class="QPushButton" name="deleteitembutton">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(170, 0, 0);
-color:rgb(255, 255, 255);
-font-size:13pt</string>
-           </property>
-           <property name="text">
-            <string>Delete Item</string>
-           </property>
-          </widget>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QComboBox" name="comboBox_2">
+             <property name="styleSheet">
+              <string notr="true">background-color:white;
+color:black;</string>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignTop">
+            <widget class="QPushButton" name="pushButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>1</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: white;
+background-color: green;</string>
+             </property>
+             <property name="text">
+              <string>add member</string>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignTop">
+            <widget class="QPushButton" name="pushButton_2">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>9</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: white;
+background-color: red;</string>
+             </property>
+             <property name="text">
+              <string>remove member</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item alignment="Qt::AlignRight|Qt::AlignTop">
           <widget class="QListWidget" name="memberlist">
@@ -89,21 +154,10 @@ font-size:13pt</string>
              <height>16777215</height>
             </size>
            </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="1" column="0">
-        <layout class="QHBoxLayout" name="hrlayout">
-         <item alignment="Qt::AlignLeft|Qt::AlignTop">
-          <widget class="QPushButton" name="addcolumnbutton">
            <property name="styleSheet">
             <string notr="true">color:rgb(255, 255, 255);
-background-color:rgb(85, 170, 0);
-font-size:15pt;</string>
-           </property>
-           <property name="text">
-            <string>Add Column</string>
+font-size:15pt;
+</string>
            </property>
           </widget>
          </item>

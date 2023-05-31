@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>825</width>
-    <height>720</height>
+    <width>554</width>
+    <height>807</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,9 +18,6 @@
 background-color: rgb(54, 54, 54);</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
-   <item row="0" column="4" alignment="Qt::AlignRight|Qt::AlignTop">
-    <widget class="QListWidget" name="memberlist"/>
-   </item>
    <item row="0" column="0" colspan="2" alignment="Qt::AlignTop">
     <widget class="QLabel" name="boardnamelabel">
      <property name="styleSheet">
@@ -32,19 +29,46 @@ font-size:30pt;</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="deletecardbutton">
+   <item row="0" column="2" alignment="Qt::AlignTop">
+    <widget class="QPushButton" name="btmp_button">
+     <property name="styleSheet">
+      <string notr="true">color:rgb(255, 255, 255);
+font-size:13pt;
+background-color:rgb(167, 168, 167);</string>
+     </property>
+     <property name="text">
+      <string>Back to Mainpage</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3" alignment="Qt::AlignTop">
+    <widget class="QPushButton" name="calculator">
+     <property name="styleSheet">
+      <string notr="true">color:rgb(255, 255, 255);
+font-size:10pt;
+background-color:rgb(0, 0, 127)</string>
+     </property>
+     <property name="text">
+      <string>Calculator</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4" alignment="Qt::AlignRight|Qt::AlignTop">
+    <widget class="QListWidget" name="memberlist"/>
+   </item>
+   <item row="5" column="0">
+    <widget class="QPushButton" name="addcardbutton">
      <property name="styleSheet">
       <string notr="true">color:rgb(255, 255, 255);
 background-color:rgb(85, 170, 127);
 font-size:12pt;</string>
      </property>
      <property name="text">
-      <string>Delete Card</string>
+      <string>Add Card</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="5">
+   <item row="4" column="0" colspan="5">
     <widget class="QScrollArea" name="scrollArea">
      <property name="verticalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOn</enum>
@@ -60,8 +84,8 @@ font-size:12pt;</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>780</width>
-        <height>436</height>
+        <width>517</width>
+        <height>481</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -85,39 +109,53 @@ font-size:15pt;</string>
      </widget>
     </widget>
    </item>
-   <item row="0" column="2" alignment="Qt::AlignTop">
-    <widget class="QPushButton" name="btmp_button">
-     <property name="styleSheet">
-      <string notr="true">color:rgb(255, 255, 255);
-font-size:13pt;
-background-color:rgb(167, 168, 167);</string>
-     </property>
-     <property name="text">
-      <string>Back to Mainpage</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QPushButton" name="addcardbutton">
+   <item row="5" column="1">
+    <widget class="QPushButton" name="deletecardbutton">
      <property name="styleSheet">
       <string notr="true">color:rgb(255, 255, 255);
 background-color:rgb(85, 170, 127);
 font-size:12pt;</string>
      </property>
      <property name="text">
-      <string>Add Card</string>
+      <string>Delete Card</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="3" alignment="Qt::AlignTop">
-    <widget class="QPushButton" name="calculator">
+   <item row="3" column="3">
+    <widget class="QPushButton" name="pushButton_2">
      <property name="styleSheet">
-      <string notr="true">color:rgb(255, 255, 255);
-font-size:10pt;
-background-color:rgb(0, 0, 127)</string>
+      <string notr="true">background-color:red;
+color: white;</string>
      </property>
      <property name="text">
-      <string>Calculator</string>
+      <string>Remove</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QPushButton" name="pushButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: green;
+color: white;</string>
+     </property>
+     <property name="text">
+      <string>Add member</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4">
+    <widget class="QLineEdit" name="lineEdit">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
     </widget>
    </item>
@@ -129,6 +167,9 @@ background-color:rgb(0, 0, 127)</string>
   <zorder>memberlist</zorder>
   <zorder>calculator</zorder>
   <zorder>deletecardbutton</zorder>
+  <zorder>lineEdit</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>pushButton_2</zorder>
  </widget>
  <resources/>
  <connections/>

@@ -136,46 +136,6 @@ border: 5px solid black;</string>
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Image&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QListWidget" name="checklistwidget">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>370</y>
-     <width>481</width>
-     <height>131</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::WinPanel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
-   </property>
-   <property name="dragDropMode">
-    <enum>QAbstractItemView::InternalMove</enum>
-   </property>
-   <item>
-    <property name="text">
-     <string>item</string>
-    </property>
-    <property name="checkState">
-     <enum>Checked</enum>
-    </property>
-   </item>
-  </widget>
-  <widget class="QPushButton" name="addchecklistbutton">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>330</y>
-     <width>481</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Add checklist</string>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections/>

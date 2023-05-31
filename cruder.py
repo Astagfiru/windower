@@ -1,4 +1,5 @@
 import os
+import ast
 
 class User:
 	def __init__(self, id, name, password):
@@ -98,19 +99,132 @@ class CRUDOperations:
 				return entity
 		return None
 
+	def find_by_name(self, name):
+		entities = self.file_handler.read_entities()
+		for entity in entities:
+			if entity.name == name:
+				return entity
+		return None
+
 def PersonId(name, password):
-		user = user_crud.find_by_name_and_password(name, password)
-		if user is not None:
-				return user.id
-		else:
-				return "No"
+	user = user_crud.find_by_name_and_password(name, password)
+	if user is not None:
+		return user.id
+	else:
+		return "No"
+
+def BoardId(name):
+	board = board_crud.find_by_name(name)
+	if board is not None:
+		return board.id
+	else:
+		return "No"
+
+def ColumnId(name): # Добавил
+	column = column_crud.find_by_name(name)
+	if column is not None:
+		return column.id
+	else:
+		return "No"
+
+def CardId(name):
+	cards = card_crud.file_handler.read_entities()
+	for card in cards:
+		if card.title == name:
+			return card.id
+
+	return "No"
+
+def Reader(object_type, object_id):
+	if object_type == "User":
+		return user_crud.read(object_id)
+	elif object_type == "Board":
+		return board_crud.read(object_id)
+	elif object_type == "Column":
+		return column_crud.read(object_id)
+	elif object_type == "Card":
+		return card_crud.read(object_id)
+	else:
+		return None
+
+def IsAppropriate(username):
+	users = user_crud.file_handler.read_entities()
+	for user in users:
+		if user.name == username:
+			return False
+	return True
+
+def GetUserBoards(username):
+	user_boards = []
+	boards = board_crud.file_handler.read_entities()
+	for board in boards:
+		if username in board.creator:
+			user_boards.append(board)
+	return user_boards
+
+def GetUserAsAddedBoards(username):
+	user_boards = []
+	boards = board_crud.file_handler.read_entities()
+	for board in boards:
+		if username in board.users:
+			user_boards.append(board)
+	return user_boards
+
+def delete_board_by_creator_and_name(user_nickname, board_name):
+	boards = board_crud.file_handler.read_entities()
+	for board in boards:
+		if board.creator == user_nickname and board.name == board_name:
+			board_crud.delete(board.id)
+			return True
+	return False
+
+def delete_column_by_anybody(board_name, column_name): # Добавил
+	boards = board_crud.file_handler.read_entities()
+	for board in boards:
+		if board.name == board_name:
+			for column in board.columns:
+				if column.title == column_name:
+					column_Id = ColumnId(column_name)
+					board_crud.delete(column_Id)
+					column_crud.delete(column_Id)
+					return True
+	return False
+
+def checkifyouanauthor(user_nickname, board_name):
+	boards = board_crud.file_handler.read_entities()
+	for board in boards:
+		if board.creator == user_nickname and board.name == board_name:
+			return True
+	return False
+
+def get_all_users_except(UserNicknames):
+	boards = board_crud.file_handler.read_entities()
+	result = []
+	for board in boards:
+		b = board.users
+		b_arr = ast.literal_eval(b)
+		for i in range(len(b_arr)):
+			if b_arr[i] not in UserNicknames:
+				result.append(board)
+	return result
+
+def get_all_user_nicknames():
+	users = user_crud.file_handler.read_entities()
+	result = []
+	for user in users:
+		result.append(user.name)
+	return result
+
+# user_info = Reader("User", 1)
+# print(user_info.name)
+
 
 user_crud = CRUDOperations(FileHandler('users.txt', User))
 board_crud = CRUDOperations(FileHandler('boards.txt', Board))
 column_crud = CRUDOperations(FileHandler('columns.txt', Column))
 card_crud = CRUDOperations(FileHandler('cards.txt', Card))
 
-user = user_crud.create("Vitya", "wasd")
+# user = user_crud.create("Vitya", "wasd")
 
 # board = board_crud.create("thefirst", "vitya", ["Alex", "Natcha"], ["001", "002"], "19.05")
 # board_crud.update(board.id, columns=["001"])
@@ -119,4 +233,4 @@ user = user_crud.create("Vitya", "wasd")
 # card = card_crud.create("ha", "wa", 1, "1", "1.jpg")
 # column = column_crud.create("Shtosh", card.id)
 
-print(PersonId("Vitya", "wasd"))
+# print(PersonId("Vitya", "wasd"))
